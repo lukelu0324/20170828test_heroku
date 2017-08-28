@@ -6,23 +6,23 @@ var bot = linebot({
   channelSecret: '95f6e1182e9dfc44326563ccd1a960f0',
   channelAccessToken: 'XMmH173RRphLqCr7JGYqLnw9tKCTb0zB1+S6Bl0KX1GyKwIP5Uk1tEXPHahBt4CrA3SJk3w3ycgy7vB4Xb2+F/cibAAfPAdtWUajGdHQcQ/lfK/0KQ6tim2+toriogZ1hGxdfTbquKGGlj8aiE7vNAdB04t89/1O/w1cDnyilFU='
 });
-bot.on('message', function(event) {
-  console.log(event); //把收到訊息的 event 印出來看看
-});
-bot.on('message', function(event) {
-  if (event.message.type = 'text') {
-    var msg = event.message.text;
-    var usr = event.message.user;
-    event.reply(msg).then(function(data) {
-      // success 
-      console.log(msg);
-      console.log(usr);
-    }).catch(function(error) {
-      // error 
-      console.log('error');
-    });
-  }
-});
+// bot.on('message', function(event) {
+//   console.log(event); //把收到訊息的 event 印出來看看
+// });
+// bot.on('message', function(event) {
+//   if (event.message.type = 'text') {
+//     var msg = event.message.text;
+//     var usr = event.message.user;
+//     event.reply(msg).then(function(data) {
+//       // success 
+//       console.log(msg);
+//       console.log(usr);
+//     }).catch(function(error) {
+//       // error 
+//       console.log('error');
+//     });
+//   }
+// });
 
 const app = express();
 const linebotParser = bot.parser();
