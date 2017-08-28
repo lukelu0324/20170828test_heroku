@@ -7,6 +7,9 @@ var bot = linebot({
   channelAccessToken: 'XMmH173RRphLqCr7JGYqLnw9tKCTb0zB1+S6Bl0KX1GyKwIP5Uk1tEXPHahBt4CrA3SJk3w3ycgy7vB4Xb2+F/cibAAfPAdtWUajGdHQcQ/lfK/0KQ6tim2+toriogZ1hGxdfTbquKGGlj8aiE7vNAdB04t89/1O/w1cDnyilFU='
 });
 bot.on('message', function(event) {
+  console.log(event); //把收到訊息的 event 印出來看看
+});
+bot.on('message', function(event) {
   if (event.message.type = 'text') {
     var msg = event.message.text;
     var usr = event.message.user;
