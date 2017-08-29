@@ -24,7 +24,7 @@ bot.on('message', function(event) {
   }
 });
 setTimeout(function(){
-    var userId = '1532456627';
+    var userId = 'Uf84359155aca22c19ecb079fb584e09d';
     var sendMsg = '主動發訊息';
     bot.push(userId,sendMsg);
     console.log('send: '+sendMsg);
