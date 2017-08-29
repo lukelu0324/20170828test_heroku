@@ -23,6 +23,12 @@ bot.on('message', function(event) {
     });
   }
 });
+setTimeout(function(){
+    var userId = '1532456627';
+    var sendMsg = '主動發訊息';
+    bot.push(userId,sendMsg);
+    console.log('send: '+sendMsg);
+},5000);
 
 const app = express();
 const linebotParser = bot.parser();
