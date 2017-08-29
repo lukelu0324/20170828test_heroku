@@ -18,6 +18,12 @@ bot.on('message', function(event) {
     });
   }
 });
+setTimeout(function(){
+    var userId = 'Uf84359155aca22c19ecb079fb584e09d';
+    var sendMsg = '要發送的文字';
+    bot.push(userId,sendMsg);
+    console.log('send: '+sendMsg);
+},20000);
 
 const app = express();
 const linebotParser = bot.parser();
