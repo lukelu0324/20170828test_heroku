@@ -1,35 +1,18 @@
 var linebot = require('linebot');
 var express = require('express');
+var getJSON = require('get-json');
 
 var bot = linebot({
-  channelId: '1532456627',
-  channelSecret: '95f6e1182e9dfc44326563ccd1a960f0',
-  channelAccessToken: 'XMmH173RRphLqCr7JGYqLnw9tKCTb0zB1+S6Bl0KX1GyKwIP5Uk1tEXPHahBt4CrA3SJk3w3ycgy7vB4Xb2+F/cibAAfPAdtWUajGdHQcQ/lfK/0KQ6tim2+toriogZ1hGxdfTbquKGGlj8aiE7vNAdB04t89/1O/w1cDnyilFU='
+  channelId: 'channelId',
+  channelSecret: 'channelSecret',
+  channelAccessToken: 'channelAccessToken'
 });
-bot.on('message', function(event) {
-  console.log(event); //把收到訊息的 event 印出來看看
-});
-bot.on('message', function(event) {
-  if (event.message.type = 'text') {
-    var msg = event.message.text;
-    var usr = event.message.user;
-    event.reply(msg).then(function(data) {
-      // success 
-      console.log(msg);
-      console.log(usr);
-    }).catch(function(error) {
-      // error 
-      console.log('error');
-    });
-  }
-});
-setTimeout(function(){
-    var userId = 'Uf84359155aca22c19ecb079fb584e09d';
-    var sendMsg = '主動發訊息';
-    bot.push(userId,sendMsg);
-    console.log('send: '+sendMsg);
-},5000);
 
+var timer;
+var pm = [];
+_getJSON();
+
+_bot();
 const app = express();
 const linebotParser = bot.parser();
 app.post('/', linebotParser);
@@ -39,3 +22,45 @@ var server = app.listen(process.env.PORT || 8080, function() {
   var port = server.address().port;
   console.log("App now running on port", port);
 });
+
+function _bot() {
+  bot.on('message', function(event) {
+    if (event.message.type == 'text') {
+      var msg = event.message.text;
+      var replyMsg = '';
+      if (msg.indexOf('PM2.5') != -1) {
+        pm.forEach(function(e, i) {
+          if (msg.indexOf(e[0]) != -1) {
+            replyMsg = e[0] + '的 PM2.5 數值為 ' + e[1];
+          }
+        });
+        if (replyMsg == '') {
+          replyMsg = '請輸入正確的地點';
+        }
+      }
+      if (replyMsg == '') {
+        replyMsg = '不知道「'+msg+'」是什麼意思 :p';
+      }
+
+      event.reply(replyMsg).then(function(data) {
+        console.log(replyMsg);
+      }).catch(function(error) {
+        console.log('error');
+      });
+    }
+  });
+
+}
+
+function _getJSON() {
+  clearTimeout(timer);
+  getJSON('http://opendata2.epa.gov.tw/AQX.json', function(error, response) {
+    response.forEach(function(e, i) {
+      pm[i] = [];
+      pm[i][0] = e.SiteName;
+      pm[i][1] = e['PM2.5'] * 1;
+      pm[i][2] = e.PM10 * 1;
+    });
+  });
+  timer = setInterval(_getJSON, 1800000); //每半小時抓取一次新資料
+}
