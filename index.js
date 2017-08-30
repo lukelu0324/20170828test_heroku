@@ -9,6 +9,8 @@ var bot = linebot({
 bot.on('message', function(event) {
   console.log(event); //把收到訊息的 event 印出來看看
   console.log('1xxx');
+  event.reply('測試');
+  console.log('1000');
 });
 bot.on('message', function(event) {
   if (event.message.type = 'text') {
