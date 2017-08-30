@@ -8,6 +8,7 @@ var bot = linebot({
 });
 bot.on('message', function(event) {
   console.log(event); //把收到訊息的 event 印出來看看
+  console.log('1xxx');
 });
 bot.on('message', function(event) {
   if (event.message.type = 'text') {
@@ -15,9 +16,11 @@ bot.on('message', function(event) {
     event.reply(msg).then(function(data) {
       // success 
       console.log(msg);
+      console.log('2xxx');
     }).catch(function(error) {
       // error 
       console.log('error');
+      console.log('3xxx');
     });
   }
 });
@@ -26,6 +29,7 @@ setTimeout(function(){
     var sendMsg = '要發送的文字';
     bot.push(userId,sendMsg);
     console.log('send: '+sendMsg);
+    console.log('4xxx');
 },20000);
 
 const app = express();
@@ -36,4 +40,5 @@ app.post('/', linebotParser);
 var server = app.listen(process.env.PORT || 8080, function() {
   var port = server.address().port;
   console.log("App now running on port", port);
+  console.log('5xxx');
 });
