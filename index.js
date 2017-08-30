@@ -13,10 +13,14 @@ bot.on('message', function(event) {
 bot.on('message', function(event) {
   if (event.message.type = 'text') {
     var msg = event.message.text;
+    var userId = 'Uf84359155aca22c19ecb079fb584e09d';
+    var sendMsg = '要發送的文字';
     event.reply(msg).then(function(data) {
       // success 
       console.log(msg);
       console.log('2xxx');
+      bot.push(userId,sendMsg);
+      console.log('send: '+sendMsg);
     }).catch(function(error) {
       // error 
       console.log('error');
