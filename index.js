@@ -21,7 +21,7 @@ bot.on('message', function(event) {
       // success 
       console.log(msg);
       console.log('2xxx');
-      bot.push(userId,sendMsg);
+      bot.push(userId,[sendMsg]);
       console.log('send: '+sendMsg);
     }).catch(function(error) {
       // error 
@@ -30,7 +30,7 @@ bot.on('message', function(event) {
     });
   }
 });
-bot.push('Uf84359155aca22c19ecb079fb584e09d','測試外能否push message');
+bot.push('Uf84359155aca22c19ecb079fb584e09d',['測試外能否push message']);
 setTimeout(function(){
     var userId = 'Uf84359155aca22c19ecb079fb584e09d';
     var sendMsg = '要發送的文字';
