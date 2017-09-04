@@ -9,7 +9,7 @@ var bot = linebot({
 bot.on('message', function(event) {
   console.log(event); //把收到訊息的 event 印出來看看
   console.log('1xxx');
-  event.reply('測試');
+//   event.reply('測試');
   console.log('1000');
 });
 bot.on('message', function(event) {
@@ -30,6 +30,7 @@ bot.on('message', function(event) {
     });
   }
 });
+bot.push('Uf84359155aca22c19ecb079fb584e09d','測試外能否push message');
 setTimeout(function(){
     var userId = 'Uf84359155aca22c19ecb079fb584e09d';
     var sendMsg = '要發送的文字';
