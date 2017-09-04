@@ -16,7 +16,7 @@ bot.on('message', function(event) {
   if (event.message.type = 'text') {
     var msg = event.message.text;
     var userId = 'Uf84359155aca22c19ecb079fb584e09d';
-    var sendMsg = '要發送的文字';
+    var sendMsg = '測試能否push message';
     event.reply(msg).then(function(data) {
       // success 
       console.log(msg);
